@@ -1,0 +1,39 @@
+class PlayerControl : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(Zero.Keyboard.KeyIsDown(Keys.W))
+        {
+            //Console.WriteLine("w is pressed");
+            var temp = this.Owner.Transform.Translation;
+            temp.Y += 10*event.Dt;
+            this.Owner.Transform.Translation = temp;
+        }
+        if(Zero.Keyboard.KeyIsDown(Keys.S))
+        {
+            //Console.WriteLine("s is pressed");
+            var temp = this.Owner.Transform.Translation;
+            temp.Y -= 10*event.Dt;
+            this.Owner.Transform.Translation = temp;
+        }
+                if(Zero.Keyboard.KeyIsDown(Keys.D))
+        {
+            //Console.WriteLine("d is pressed");
+            var temp = this.Owner.Transform.Translation;
+            temp.X += 10*event.Dt;
+            this.Owner.Transform.Translation = temp;
+        }
+                if(Zero.Keyboard.KeyIsDown(Keys.A))
+        {
+            //Console.WriteLine("a is pressed");
+            var temp = this.Owner.Transform.Translation;
+            temp.X -= 10*event.Dt;
+            this.Owner.Transform.Translation = temp;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "Catching up",
+	uint64 LibraryId = 561a8f9a730324d9,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

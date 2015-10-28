@@ -1,0 +1,40 @@
+class ButtonSpawner : ZilchComponent
+{
+    var Direction : Real3 = Real3(100,0,0);
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+    }
+    function OnKeyDown(event : KeyboardEvent)
+    {
+        // double equal signs mean compare. singal equal sign means to reasign the value.
+        if(event.Key == Keys.Space)
+        {
+            var location = this.Owner.Transform.Translation;
+            var archetypeToSpawn = Archetype.Find("Ball");
+            var bullet = this.Space.CreateAtPosition(archetypeToSpawn, location);
+            bullet.RigidBody.Velocity = this.Direction;
+        }
+        if(Zero.Keyboard.KeyIsPressed(Keys.Up))
+        {
+            this.Direction = Real3(0,100,0);
+        }
+        if(Zero.Keyboard.KeyIsPressed(Keys.Down))
+        {
+            this.Direction = Real3(0,-100,0);
+        }
+        if(Zero.Keyboard.KeyIsPressed(Keys.Right))
+        {
+            this.Direction = Real3(100,0,0);
+        }
+        if(Zero.Keyboard.KeyIsPressed(Keys.Left))
+        {
+            this.Direction = Real3(-100,0,0);
+        }
+    }
+}

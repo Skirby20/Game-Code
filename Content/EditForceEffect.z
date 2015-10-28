@@ -1,0 +1,22 @@
+class EditForceEffect : ZilchComponent
+{
+    var Temp : Real3 = Real3(2,1,1);
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //this.Owner.ForceEffect.Active =false;
+        //this.Owner.Transform.Scale = this.Temp;
+        
+        if(Zero.Keyboard.KeyIsPressed(Keys.W))
+        {
+            //Console.WriteLine("w is pressed");
+            var temp = this.Owner.Transform.Translation;
+            temp.Y += 1;
+            this.Owner.Transform.Translation = temp;
+        }
+    }
+}
