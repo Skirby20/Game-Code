@@ -1,0 +1,23 @@
+class EnemyMovement : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        Console.WriteLine(this.Owner.Transform.Translation);
+        var temp = this.Space.FindObjectByName("player").Transform.Translation; 
+        var temp2 = this.Owner.Transform.Translation;
+        if(temp.X > this.Owner.Transform.Translation.X)
+        {
+            temp2.X += 0.1;
+        }
+        if(temp.X < this.Owner.Transform.Translation.X)
+        {
+            temp2.X -= 0.1;
+        }
+        this.Owner.Transform.Translation = temp2;
+    }
+}
